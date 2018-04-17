@@ -27,7 +27,7 @@ public class LoginToRegister {
     @GetMapping("/api/protected")
     public @ResponseBody
     Object hellWorld(@RequestHeader(value = USER_NAME) String userId) {
-        return "Your user id is阿斯顿阿三 '" + userId + "'";
+        return "Your user id is'" + userId + "'";
     }
 
     @PostMapping("/user/login")
