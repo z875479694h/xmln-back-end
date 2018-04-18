@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://118.89.25.158:3306/XMLN
+    username: xmln
+    password: Xmln123.

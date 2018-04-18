@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import xyz.hcworld.xmlnbackend.filter.JwtAuthenticationFilter;
 import xyz.hcworld.xmlnbackend.model.token.Token;
 import xyz.hcworld.xmlnbackend.model.token.TokenResult;
+import xyz.hcworld.xmlnbackend.model.user.Account;
+import xyz.hcworld.xmlnbackend.service.LoginService;
 import xyz.hcworld.xmlnbackend.util.JwtUtil;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
 import static xyz.hcworld.xmlnbackend.util.JwtUtil.USER_NAME;
@@ -23,7 +24,7 @@ import static xyz.hcworld.xmlnbackend.util.JwtUtil.USER_NAME;
  */
 @RestController
 public class LoginToRegister {
-
+    LoginService login = new LoginService();
     @GetMapping("/api/protected")
     public @ResponseBody
     Object hellWorld(@RequestHeader(value = USER_NAME) String userId) {
@@ -31,9 +32,10 @@ public class LoginToRegister {
     }
 
     @PostMapping("/user/login")
-    public Object login(HttpServletResponse response, @RequestBody final Account account) {
-        if (isValidPassword(account)) {
-            String jwt = JwtUtil.generateToken(account.username);
+    public Object login(@RequestBody Account account) {
+
+        if (login.isValidPassword(account)) {
+            String jwt = JwtUtil.generateToken(account.getUsername());
             TokenResult tokenResult = new TokenResult(new Token(jwt, "86400", "Bearer"));
             return new HashMap<String, Object>() {{
                 put("statusCode", "000000");
@@ -54,15 +56,6 @@ public class LoginToRegister {
         return registrationBean;
     }
 
-    private boolean isValidPassword(Account credentials) {
-        return "admin".equals(credentials.username)
-                && "admin".equals(credentials.password);
-    }
 
-
-    public static class Account {
-        public String username;
-        public String password;
-    }
 
 }

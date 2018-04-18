@@ -36,11 +36,11 @@ public class JwtUtil {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
 
     public static String generateToken(String userId) {
-        // HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         //you can put any data in the map
-        //map.put(USER_NAME, userId);
+        map.put(USER_NAME, userId);
         String jwt = Jwts.builder()
-                //.setClaims(map)
+                .setClaims(map)
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
