@@ -3,8 +3,6 @@ package xyz.hcworld.xmlnbackend.db;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidPooledConnection;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.sql.SQLException;
 
@@ -15,17 +13,18 @@ import java.sql.SQLException;
  * @author 张红尘
  * @create 2018-04-19 22:12
  */
-@ConfigurationProperties(prefix = "db")
+
 public class Druid {
+
     public static DruidDataSource datasource = new DruidDataSource();
-    @Value("${spring.datasource.url}")
+    /*@Value("${spring.datasource.url}")
     private static String dbUrl;
     @Value("${spring.datasource.username}")
     private static String username;
     @Value("${spring.datasource.password}")
     private static String password;
     @Value("${spring.datasource.driver-class-name}")
-    private static String driverClassName;
+    private static String driverClassName;*/
 
     static {
        /*datasource.setUrl(dbUrl);

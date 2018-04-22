@@ -22,22 +22,28 @@ public class LoginService {
     ResultSet rs = null;
 
     public Map isValidPassword(Account credentials) throws SQLException {
-        conn = Druid.getConnection();
-        String sql = "SELECT UserPassword FROM login WHERE UserAccount=?";
-        String userName = credentials.getUsername();
-        String password = credentials.getPassword();
-        pst = conn.prepareStatement(sql);
-        pst.setString(1, userName);
-        rs = pst.executeQuery();
         Map login = new HashMap<String, Boolean>(2);
-        if (rs.next()) {
-            login.put("userName", true);
-            login.put("password", password.equals(rs.getString("UserPassword")));
-        } else {
-            login.put("userName", false);
-            login.put("password", false);
+        try {
+            conn = Druid.getConnection();
+            String sql = "SELECT UserPassword FROM login WHERE UserAccount=?";
+            String userName = credentials.getUsername();
+            String password = credentials.getPassword();
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, userName);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                login.put("userName", true);
+                login.put("password", password.equals(rs.getString("UserPassword")));
+            } else {
+                login.put("userName", false);
+                login.put("password", false);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conn.close();
         }
-        conn.close();
         return login;
     }
 
