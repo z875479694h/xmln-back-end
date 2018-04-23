@@ -11,7 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
+/**
+ * Jwt身份验证过滤器
+ *
+ * @author: 张红尘
+ * @date: 2018/4/23
+ **/
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private static final PathMatcher pathMatcher = new AntPathMatcher();
 

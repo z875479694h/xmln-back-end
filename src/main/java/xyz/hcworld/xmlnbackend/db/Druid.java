@@ -46,6 +46,9 @@ public class Druid {
         System.out.println(datasource);
     }
 
+    /**
+     * 获得数据库连接
+     */
     public static DruidPooledConnection getConnection() throws SQLException {
         return datasource.getConnection();
     }

@@ -35,6 +35,9 @@ public class JwtUtil {
     public static final String USER_NAME = "userName";
     private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
 
+    /**
+     * 生成令牌
+     */
     public static String generateToken(String userId) {
         HashMap<String, Object> map = new HashMap<>();
         //you can put any data in the map
@@ -48,6 +51,7 @@ public class JwtUtil {
         return TOKEN_PREFIX + jwt;
     }
 
+    /**重写HTTP请求*/
     public static HttpServletRequest validateTokenAndAddUserIdToHeader(HttpServletRequest request) {
         String token = request.getHeader(HEADER_STRING);
         if (token != null) {
@@ -67,6 +71,7 @@ public class JwtUtil {
         }
     }
 
+    /**自定义Http Servlet请求*/
     public static class CustomHttpServletRequest extends HttpServletRequestWrapper {
         private Map<String, String> claims;
 
@@ -89,6 +94,7 @@ public class JwtUtil {
         }
     }
 
+    /**令牌验证异常*/
     static class TokenValidationException extends RuntimeException {
         public TokenValidationException(String msg) {
             super(msg);
