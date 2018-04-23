@@ -48,7 +48,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     /**
-     * 放行/user/login和/user/register开头的
+     * 放行/user/login和/user/register开头
      */
     private boolean isProtectedUserLoginUrl(HttpServletRequest request) {
         boolean a = pathMatcher.match("/user/login", request.getServletPath())
