@@ -22,6 +22,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             if (isProtectedUrl(request)) {
                 request = JwtUtil.validateTokenAndAddUserIdToHeader(request);
+            } else if (isProtectedUserLoginUrl(request)) {
+            } else if (isProtectedUserUrl(request)) {
+                request = JwtUtil.validateTokenAndAddUserIdToHeader(request);
             }
         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
@@ -30,8 +33,29 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+    /**
+     * 拦截APi开头的
+     */
     private boolean isProtectedUrl(HttpServletRequest request) {
         return pathMatcher.match("/api/**", request.getServletPath());
     }
 
+    /**
+     * 拦截user开头的
+     */
+    private boolean isProtectedUserUrl(HttpServletRequest request) {
+        return pathMatcher.match("/user/**", request.getServletPath());
+    }
+
+    /**
+     * 放行/user/login和/user/register开头的
+     */
+    private boolean isProtectedUserLoginUrl(HttpServletRequest request) {
+        boolean a = pathMatcher.match("/user/login", request.getServletPath())
+                || pathMatcher.match("/user/login/", request.getServletPath())
+                || pathMatcher.match("/user/register", request.getServletPath())
+                || pathMatcher.match("/user/register/", request.getServletPath());
+        System.out.println(a);
+        return a;
+    }
 }
