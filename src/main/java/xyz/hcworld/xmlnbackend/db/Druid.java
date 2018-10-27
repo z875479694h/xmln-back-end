@@ -15,12 +15,12 @@ import java.sql.SQLException;
  */
 
 public class Druid {
-
+    /**
+     * 数据源
+     * */
     public static DruidDataSource datasource = new DruidDataSource();
 
-
     static {
-
         datasource.setUrl("jdbc:mysql://localhost:3306/XMLN?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false");
         datasource.setUsername("xmln");
         datasource.setPassword("Xmln123.");

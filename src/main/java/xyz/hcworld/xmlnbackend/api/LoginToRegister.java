@@ -56,7 +56,7 @@ public class LoginToRegister {
      * @date: 2018/4/19
     **/
     @PostMapping("/user/login")
-    public Object login(@RequestBody Account account) throws SQLException {
+    public Map<String, Object> login(@RequestBody Account account) throws SQLException {
         Map log = login.isValidPassword(account);
         String userName = "userName";
         String password = "password";
