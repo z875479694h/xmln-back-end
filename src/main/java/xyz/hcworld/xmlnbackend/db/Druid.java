@@ -33,7 +33,6 @@ public class Druid {
         datasource.setTestWhileIdle(true);
         datasource.setTestOnBorrow(false);
         datasource.setTestOnReturn(false);
-        System.out.println(datasource);
     }
 
     /**
