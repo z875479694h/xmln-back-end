@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 
 /**
- * 描述:Druid连接池配置
+ * 描述:Druid连接池配置使用原生JDBC
  *
  * @author 张红尘
  * @create 2018-04-19 22:12
