@@ -27,18 +27,6 @@ public class LoginToRegister {
     LoginService login = new LoginService();
 
     /**
-     * jwt过滤器
-     *
-     */
-    @Bean
-    public FilterRegistrationBean jwtFilter() {
-        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        JwtAuthenticationFilter filter = new JwtAuthenticationFilter();
-        registrationBean.setFilter(filter);
-        return registrationBean;
-    }
-
-    /**
      * 测试
      *
      * @author: 张红尘
@@ -79,7 +67,17 @@ public class LoginToRegister {
         }
     }
 
-
+    /**
+     * jwt过滤器
+     *
+     */
+    @Bean
+    public FilterRegistrationBean jwtFilter() {
+        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        JwtAuthenticationFilter filter = new JwtAuthenticationFilter();
+        registrationBean.setFilter(filter);
+        return registrationBean;
+    }
 
 
 

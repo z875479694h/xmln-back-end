@@ -1,4 +1,4 @@
-﻿package xyz.hcworld.xmlnbackend.db;
+package xyz.hcworld.xmlnbackend.db;
 
 
 import com.alibaba.druid.pool.DruidDataSource;
@@ -19,6 +19,7 @@ public class Druid {
      * 数据源
      * */
     public static DruidDataSource datasource = new DruidDataSource();
+
 
     static {
         datasource.setUrl("jdbc:mysql://localhost:3306/XMLN?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false");

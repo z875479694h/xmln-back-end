@@ -17,7 +17,6 @@ import java.util.Map;
  */
 public class LoginService {
     DruidPooledConnection conn = null;
-    /**Druid druidDataSource*/
     PreparedStatement pst = null;
     ResultSet rs = null;
 
